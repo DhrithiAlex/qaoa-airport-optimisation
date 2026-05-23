@@ -19,46 +19,25 @@
 ---
 
 ## Overview
+Given a weighted network of 12 major global airports, this project solves the problem of selecting **k=4 optimal hubs** to maximize passenger throughput while minimizing systemic delays.
 
-Given a weighted network of 12 major global airports, which 4 should be designated as primary hubs to maximise passenger throughput and minimise systemic delay? This is a constrained combinatorial optimisation problem with `C(12,4) = 495` possible solutions — trivially tractable by brute force for 12 nodes, but representative of the NP-hard class that scales exponentially.
-
-This project demonstrates a complete QAOA pipeline:
-
-1. **Problem formulation** — multi-criteria hub efficiency score (route reward + passenger volume − delay penalty)
-2. **QUBO encoding** — objective + cardinality constraint `(Σxᵢ = k)` as a quadratic unconstrained binary optimisation matrix
-3. **Ising mapping** — QUBO → Pauli-Z spin Hamiltonian via the `xᵢ = (1 − σᵢᶻ)/2` substitution
-4. **QAOA circuit** — parameterised Qiskit circuit (ZZ + Rz cost layer, Rx mixer) at depths p = 1, 2, 3
-5. **Hybrid optimisation** — COBYLA classical optimiser drives the variational parameter loop
-6. **Benchmarking** — QAOA compared against exact brute-force and greedy heuristic on QUBO cost and efficiency score
-
----
+The problem is formulated as a **QUBO** with cardinality constraints and solved using classical benchmarks and **QAOA** (p=1, 2, 3) on Qiskit Aer.
 
 ## Key Finding
 
-> **At p ≥ 2, QAOA discovers hub configurations with significantly higher efficiency scores (3.232 vs 1.939) than brute-force QUBO minimisation.** This reveals a gap between the proxy QUBO objective and the true multi-criteria metric — QAOA's probabilistic landscape exploration surfaces solutions that deterministic cost minimisation alone misses.
-
-This is not a failure of QAOA. It is a demonstration that quantum variational search can escape the QUBO objective's local structure and find globally better solutions under the true metric.
----
+> At p ≥ 2, QAOA discovers hub configurations with significantly higher efficiency scores (3.232 vs 1.939) than brute-force QUBO minimisation. This demonstrates how quantum variational methods can escape local structures of the proxy objective and find globally better solutions under the true multi-criteria metric.
 
 ## Results
 
-| Solver | QUBO Cost ↓ | Efficiency Score ↑ | Approx. Ratio |
-|---|---|---|---|
-| Brute-force (exact) | −64.16 | 1.939 | 1.000 (optimal) |
-| Greedy heuristic | −64.16 | 1.939 | 1.000 |
-| QAOA p=1 | −63.83 | 1.936 | 1.005 |
-| QAOA p=2 | −63.89 | **3.232** | 1.004 |
-| QAOA p=3 | −64.02 | 3.141 | 1.002 |
+| Solver              | QUBO Cost ↓ | Efficiency Score ↑ | Approx. Ratio |
+|---------------------|-------------|--------------------|---------------|
+| Brute-force (exact) | -64.16      | 1.939              | 1.000         |
+| Greedy heuristic    | -64.16      | 1.939              | 1.000         |
+| QAOA p=1            | -63.83      | 1.936              | 1.005         |
+| QAOA p=2            | -63.89      | **3.232**          | 1.004         |
+| QAOA p=3            | -64.02      | 3.141              | 1.002         |
 
-### Optimal Hub Scorecard
-
-| IATA | City | Pax (M/yr) | On-Time Departure |
-|---|---|---|---|
-| ATL | Atlanta | 104 | 78% |
-| DXB | Dubai | 92 | 82% |
-| LAX | Los Angeles | 88 | 79% |
-| IST | Istanbul | 76 | 77% |
-
+**Optimal Hubs** (Brute-force): ATL, DXB, LAX, IST
 Geographically balanced: North America · Middle East · US West Coast · Europe/Asia gateway.
 
 ---
@@ -82,4 +61,9 @@ Geographically balanced: North America · Middle East · US West Coast · Europe
 
 ---
 
+## Installation
 
+```bash
+git clone https://github.com/DhrithiAlex/qaoa-airport-optimisation.git
+cd qaoa-airport-optimisation
+pip install -e .
