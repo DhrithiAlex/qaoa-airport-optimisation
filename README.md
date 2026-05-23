@@ -38,4 +38,48 @@ This project demonstrates a complete QAOA pipeline:
 > **At p ≥ 2, QAOA discovers hub configurations with significantly higher efficiency scores (3.232 vs 1.939) than brute-force QUBO minimisation.** This reveals a gap between the proxy QUBO objective and the true multi-criteria metric — QAOA's probabilistic landscape exploration surfaces solutions that deterministic cost minimisation alone misses.
 
 This is not a failure of QAOA. It is a demonstration that quantum variational search can escape the QUBO objective's local structure and find globally better solutions under the true metric.
+---
+
+## Results
+
+| Solver | QUBO Cost ↓ | Efficiency Score ↑ | Approx. Ratio |
+|---|---|---|---|
+| Brute-force (exact) | −64.16 | 1.939 | 1.000 (optimal) |
+| Greedy heuristic | −64.16 | 1.939 | 1.000 |
+| QAOA p=1 | −63.83 | 1.936 | 1.005 |
+| QAOA p=2 | −63.89 | **3.232** | 1.004 |
+| QAOA p=3 | −64.02 | 3.141 | 1.002 |
+
+### Optimal Hub Scorecard
+
+| IATA | City | Pax (M/yr) | On-Time Departure |
+|---|---|---|---|
+| ATL | Atlanta | 104 | 78% |
+| DXB | Dubai | 92 | 82% |
+| LAX | Los Angeles | 88 | 79% |
+| IST | Istanbul | 76 | 77% |
+
+Geographically balanced: North America · Middle East · US West Coast · Europe/Asia gateway.
+
+---
+
+## Airport Network (12 nodes)
+
+| IATA | City | Pax (M/yr) | OTD Rate |
+|---|---|---|---|
+| ATL | Atlanta | 104 | 78% |
+| DXB | Dubai | 92 | 82% |
+| LHR | London | 80 | 76% |
+| ORD | Chicago | 79 | 72% |
+| HND | Tokyo Haneda | 85 | 91% |
+| LAX | Los Angeles | 88 | 79% |
+| CDG | Paris | 76 | 80% |
+| DFW | Dallas | 73 | 81% |
+| FRA | Frankfurt | 70 | 83% |
+| IST | Istanbul | 76 | 77% |
+| SIN | Singapore | 68 | 88% |
+| AMS | Amsterdam | 72 | 85% |
+
+---
+
 
