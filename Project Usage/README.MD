@@ -1,10 +1,6 @@
 # QAOA Airport Hub Optimisation
 
 <p align="center">
-  <img src="assets/qaoa_airport_results.png" alt="QAOA vs Classical Benchmarks — Global Airport Hub Optimisation" width="900"/>
-</p>
-
-<p align="center">
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white" alt="Python"></a>
   <img src="https://img.shields.io/badge/Qiskit-Aer%20Simulator-6929C4?logo=ibm&logoColor=white" alt="Qiskit">
   <img src="https://img.shields.io/badge/QAOA-p%3D1%2C2%2C3-green" alt="QAOA">
