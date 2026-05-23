@@ -1,10 +1,8 @@
 # QAOA for Airport Hub Optimization
 
-**Solving the Optimal Hub Selection Problem using Quantum Approximate Optimization Algorithm (QAOA)**
 
-![QAOA Airport Results](figures/qaoa_airport_results.png)
 
-# QAOA Airport Hub Optimisation
+
 
 <p align="center">
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white" alt="Python"></a>
@@ -16,6 +14,7 @@
 </p>
 
 > **Hybrid quantum-classical combinatorial optimisation: selecting k=4 optimal global airport hubs from 12 candidates using QAOA on IBM's Aer quantum circuit simulator.**
+![QAOA Airport Results](figures/qaoa_airport_results.png)
 
 ---
 
