@@ -1,0 +1,20 @@
+[project]
+name = "qaoa-airport-optimisation"
+version = "0.1.0"
+description = "QAOA for optimal airport hub selection using QUBO formulation and cardinality constraints"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Dhrithi Maria"}]
+
+dependencies = [
+    "qiskit>=1.0",
+    "qiskit-aer>=0.14",
+    "networkx>=3.0",
+    "numpy>=1.21",
+    "matplotlib>=3.5",
+    "scipy>=1.7",
+]
+
+[project.scripts]
+qaoa-airport = "scripts.run_optimization:main"
